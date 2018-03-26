@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<title> <!--  --> </title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function tellTime(hour, minute, period) {
+			message = "It's ";				//  Build message from the beginning to end starting here.
+			if(minute < 30) {				//  Process next part of message for the first half hour.
+				if(minute == 0) {
+					message += "exactly ";					
+				}
+				if(minute == 5) {
+					message += "5 after ";
+				}
+				else if(minute == 15) {
+					message += "quarter after ";
+				}
+				else {
+					message += "just after ";
+				}
+			}
+			else {							//  Process next part of message for the latter half hour.
+				if(minute == 30) {
+					message += "half past ";
+				}
+				else {
+					message += "almost ";
+					hour++;
+					if(hour == 13) {		//  Roll over the hour from 12 to 1.
+						hour = 1;
+					}
+					else if(hour == 12){
+						if(period == "AM") {	//  Roll over AM to PM and PM to AM if going from 11 to 12.
+							period = "PM";
+						}
+						else {
+							period = "AM";
+						}
+					}
+				}
+			}
+			if(hour != 12) {				//  Determine the period
+				message += hour + " ";
+				if(period == "AM") {		//  Period for the morning.
+					message += "in the morning.";
+				}
+				else {
+					if(hour >= 1 && hour <= 5) {	//  Period for afternoon/evening.
+						message += "in the afternoon.";
+					}
+					else {
+						message += "at night."
+					}
+				}
+			}
+			else {							//  Period for noon/midnight.
+				if(period == "AM") {
+					message += "midnight.";
+				}
+				else {
+					message += "noon."
+				}
+			}
+			console.log(message);
+			return message;
+		}
+	</script>
+</html>
+
+<!--  -->
+
+
+
